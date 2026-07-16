@@ -15,6 +15,8 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 // controller Imports
 const authController = require("./controllers/auth.controllers.js");
 const indexController = require("./controllers/index.controllers.js");
+const restaurantController = require("./controllers/restaurant.controllers.js")
+const mealController = require("./controllers/meal.controllers.js")
 
 const dns = require("dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
@@ -57,6 +59,8 @@ app.use(passUserToView)
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
+app.use('/restaurants', restaurantController)
+app.use('/meals', mealController)
 
 
 

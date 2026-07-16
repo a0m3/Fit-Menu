@@ -6,16 +6,16 @@
     <title>Add New Restarant</title>
 </head>
 <body>
-    <%- include('./partials/navbar') %>    
+    <%- include('../partials/navbar') %>    
 
         <form action="/restaurants" method="post">
         <label for="name">Restaurant Name: </label>
         <input name="name" id="name" type="text">
         <br><br>
-        <label for="logo">Restaurant Logo: </label>
+        <label for="logo">Restaurant Logo URL: </label>
         <input name="logo" id="logo" type="text">
         <br><br>
-        <button type="submit">Create listing</button>
+        <button type="submit">Add Restaurant</button>
     </form>
 </body>
 </html>
