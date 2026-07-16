@@ -16,7 +16,8 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 const authController = require("./controllers/auth.controllers.js");
 const indexController = require("./controllers/index.controllers.js");
 
-
+const dns = require("dns")
+dns.setServers(["8.8.8.8", "1.1.1.1"])
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
 app.use(express.urlencoded({ extended: false }));

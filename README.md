@@ -110,7 +110,6 @@ FitMenu allows users to:
 - fat
 - price
 - restaurant
-- createdBy
 
 ---
 
