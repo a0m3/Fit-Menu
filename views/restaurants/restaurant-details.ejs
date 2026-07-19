@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=  %> Details></title>
+    <title>
+        <%= restaurant.name %>
+    </title>
 </head>
+
 <body>
-    <%- include('./partials/navbar') %>    
+    <%- include('../partials/navbar') %>
+
+        <img src="<%= restaurant.logo %>" alt="<%= restaurant.name %>">
+        <h1>
+            <%= restaurant.name %>
+        </h1>
+
+
+
+        <h2>Meals</h2>
+
+        <% if (meals.length===0) { %>
+
+            <p>No meals have been added yet.</p>
+
+            <% } else { %>
+
+                <% for (let oneMeal of meals) { %>
+
+                    <div>
+                        <h3>
+                            <%= oneMeal.name %>
+                        </h3>
+
+                        <img src="<%= oneMeal.image %>" width="150">
+
+                        <p>Calories: <%= oneMeal.calories %>
+                        </p>
+
+                        <p>Protein: <%= oneMeal.protein %>g</p>
+
+                        <p>Carbs: <%= oneMeal.carbs %>g</p>
+
+                        <p>Fat: <%= oneMeal.fat %>g</p>
+
+                        <p>Price: <%= oneMeal.price %>BD</p>
+                    </div>
+
+                    <% } %>
+                        <% } %>
+                            <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
+                                <button>Add Meal</button>
+                            </form>
 </body>
+
 </html>

@@ -11,7 +11,7 @@ const connectToDB = require('./db.js')
 // middleware imports
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
-
+const isAdmin = require("./middleware/is-admin.js")
 // controller Imports
 const authController = require("./controllers/auth.controllers.js");
 const indexController = require("./controllers/index.controllers.js");
@@ -60,7 +60,7 @@ app.use(passUserToView)
 app.use('/auth',authController)
 app.use('/',indexController)
 app.use('/restaurants', restaurantController)
-app.use('/meals', mealController)
+app.use(mealController)
 
 
 
