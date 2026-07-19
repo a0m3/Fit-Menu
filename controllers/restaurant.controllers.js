@@ -11,11 +11,11 @@ res.render('restaurants/all-restaurants.ejs', {restaurants: allRestaurants})
 })
 
 // Add new restaurant form
-router.get('/new', isSignedIn, (req,res)=>{
+router.get('/new', isSignedIn, isAdmin, (req,res)=>{
     res.render('restaurants/new-restaurant.ejs')
 })
 
-router.post('/', isSignedIn, async(req,res)=>{
+router.post('/', isSignedIn, isAdmin, async(req,res)=>{
     await Restaurant.create(req.body)
     res.redirect ('/restaurants')
 })

@@ -11,14 +11,14 @@ router.get('/', async (req, res) => {
 })
 
 // Add new restaurant form
-router.get('/restaurants/:restaurantId/meals/new', isSignedIn, async (req, res) => {
+router.get('/restaurants/:restaurantId/meals/new', isSignedIn, isAdmin, async (req, res) => {
     const foundRestaurant = await Restaurant.findById(req.params.restaurantId)
     res.render('meals/new-meal.ejs', {
         restaurant: foundRestaurant
     })
 })
 
-router.post('/restaurants/:restaurantId/meals', isSignedIn, async (req, res) => {
+router.post('/restaurants/:restaurantId/meals', isSignedIn, isAdmin, async (req, res) => {
     req.body.restaurant = req.params.restaurantId
     await Meal.create(req.body)
     res.redirect(`/restaurants/${req.params.restaurantId}`)
