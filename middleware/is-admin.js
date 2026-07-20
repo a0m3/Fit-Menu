@@ -7,10 +7,10 @@ module.exports = (req, res, next) => {
     }
 
     if (req.session.user.role !== 'admin') {
-        console.log('Not an admin!')
+        console.log('Not an admin')
         return res.redirect('/')
     }
 
-    console.log('Admin!')
+    console.log('Admin')
     next()
 }

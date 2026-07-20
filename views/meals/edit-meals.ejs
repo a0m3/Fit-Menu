@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Meal</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <form action="/meals/<%= meal._id%>/edit?_method=PUT" method="POST">
+            <label for="name">Meal Name: </label>
+            <input value="<%=meal.name%>" name="name" id="name" type="text">
+            <br><br>
+            <label for="image">Meal Image: </label>
+            <input value="<%=meal.image%>" name="image" id="image" type="text">
+            <br><br>
+            <label for="calories">Calories: </label>
+            <input value="<%=meal.calories%>" name="calories" id="calories" type="text">
+            <br><br>
+            <label for="protien">Protien: </label>
+            <input value="<%=meal.protien%>" name="protien" id="protien" type="text">
+            <br><br>
+            <label for="carbs">Carbs: </label>
+            <input value="<%=meal.carbs%>" name="carbs" id="carbs" type="text">
+            <br><br>
+            <label for="fat">Fat: </label>
+            <input value="<%=meal.fat%>" name="fat" id="fat" type="text">
+            <br><br>
+            <label for="price">Price: </label>
+            <input value="<%=meal.price%>" name="price" id="price" type="text">
+            <br><br>
+            <button type="submit" href="/meals/<%=meal._id%>/edit">Update meal</button>
+        </form>
+            <div class="meal-delete-btn">
+            <form action="/meals/<%= meal._id %>?_method=DELETE" method="post">
+            <button>Delete Meal</button>
+            </form>
+            </div>
+
+</body>
+
+</html>

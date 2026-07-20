@@ -7,6 +7,12 @@
     <title>
         <%= restaurant.name %>
     </title>
+
+    <style>
+        .meal-div{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,29 +43,26 @@
 
                         <% for (let oneMeal of meals) { %>
 
-                            <div>
+                            <div class="meal-div" id="<%= oneMeal._id %>">
+                                <img src="<%= oneMeal.image %>" width="150">                                
                                 <h3>
                                     <%= oneMeal.name %>
                                 </h3>
-
-                                <img src="<%= oneMeal.image %>" width="150">
-
-                                <p>Calories: <%= oneMeal.calories %>
-                                </p>
-
-                                <p>Protein: <%= oneMeal.protein %>g</p>
-
-                                <p>Carbs: <%= oneMeal.carbs %>g</p>
-
-                                <p>Fat: <%= oneMeal.fat %>g</p>
-
                                 <p>Price: <%= oneMeal.price %>BD</p>
                             </div>
 
                             <% } %>
                                 <% } %>
 
-
+    <script>
+       const allMealDivEls = document.querySelectorAll('.meal-div')
+        console.log(allMealDivEls)
+        allMealDivEls.forEach((oneDiv)=>{
+        oneDiv.addEventListener('click',()=>{
+         window.location.replace(`/meals/${oneDiv.id}`)
+         })
+        })
+        </script>
 </body>
 
 </html>
