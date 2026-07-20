@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= restaurant.name %> Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar')%>
+        <h1>Edit <%=restaurant.name%> Details</h1>
+
+        <div class="edit-restaurant">
+            <form action="/restaurants/<%= restaurant._id %>?_method=PUT" method="POST">
+                <label for="name">Name:</label>
+                <input value="<%= restaurant.name %>" name="name" id="name" type="text">
+
+                <br><br>
+
+                <label for="image">Image</label>
+                <input type="text" name="image" value="<%= restaurant.logo %>">
+                <br><br>
+                <button type="submit">Update <%=restaurant.name%> Details</button>
+            </form>
+        </div>
+</body>
+
+</html>
