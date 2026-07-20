@@ -7,7 +7,12 @@
 </head>
 <body>
     <%- include('../partials/navbar') %>
-            <h1>All Restaurants</h1>
+    <h1>All Restaurants</h1>
+            <% if (user && user.role==='admin' ) { %>
+            <a href="/restaurants/new">
+                <button>Add new Restaurant</button>
+            </a>
+            <% } %>
     <% for(let oneRestaurant of restaurants){%>
 <div>
 

@@ -74,4 +74,15 @@ router.put('/:restaurantId', isSignedIn, isAdmin, async (req, res) => {
     }
 })
 
+//Delete restaurant
+router.delete('/:restaurantId', async (req, res) => {
+    try {
+        await Restaurant.findByIdAndDelete(req.params.restaurantId)
+        res.redirect('/restaurants')
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 module.exports = router;

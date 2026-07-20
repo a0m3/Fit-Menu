@@ -21,38 +21,45 @@
 
         <h2>Meals</h2>
 
-        <% if (meals.length===0) { %>
+        <% if (user && user.role==='admin' ) { %>
+            <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
+            <button>Add Meal</button>
+        </form>
+            <a href="/restaurants/<%= restaurant._id %>/edit">
+                <button>Edit Restaurant</button>
+            </a>
+            <% } %>
+                <% if (meals.length===0) { %>
 
-            <p>No meals have been added yet.</p>
+                    <p>No meals have been added yet.</p>
 
-            <% } else { %>
+                    <% } else { %>
 
-                <% for (let oneMeal of meals) { %>
+                        <% for (let oneMeal of meals) { %>
 
-                    <div>
-                        <h3>
-                            <%= oneMeal.name %>
-                        </h3>
+                            <div>
+                                <h3>
+                                    <%= oneMeal.name %>
+                                </h3>
 
-                        <img src="<%= oneMeal.image %>" width="150">
+                                <img src="<%= oneMeal.image %>" width="150">
 
-                        <p>Calories: <%= oneMeal.calories %>
-                        </p>
+                                <p>Calories: <%= oneMeal.calories %>
+                                </p>
 
-                        <p>Protein: <%= oneMeal.protein %>g</p>
+                                <p>Protein: <%= oneMeal.protein %>g</p>
 
-                        <p>Carbs: <%= oneMeal.carbs %>g</p>
+                                <p>Carbs: <%= oneMeal.carbs %>g</p>
 
-                        <p>Fat: <%= oneMeal.fat %>g</p>
+                                <p>Fat: <%= oneMeal.fat %>g</p>
 
-                        <p>Price: <%= oneMeal.price %>BD</p>
-                    </div>
+                                <p>Price: <%= oneMeal.price %>BD</p>
+                            </div>
 
-                    <% } %>
-                        <% } %>
-                            <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
-                                <button>Add Meal</button>
-                            </form>
+                            <% } %>
+                                <% } %>
+
+
 </body>
 
 </html>
