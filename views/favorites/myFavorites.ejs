@@ -6,6 +6,35 @@
     <title>My Favorites</title>
 </head>
 <body>
-    
+    <%- include('../partials/navbar') %>
+    <h1>My Favorites</h1>
+
+    <h2>My Favorite Restaurants</h2>
+    <% if (restaurants.length===0) { %>
+        <p>You haven't favorited any restaurants yet.</p>
+        <% } else { %>
+            <% for(let oneRestaurant of restaurants){%>
+                <div>
+                    <a href="/restaurants/<%= oneRestaurant._id %>">
+                        <%= oneRestaurant.name %>
+                    </a>
+                </div>
+                <%}%>
+                    <% } %>
+
+                        <h2>My Favorite Meals</h2>
+                        <% if (meals.length===0) { %>
+                            <p>You haven't favorited any meals yet.</p>
+                            <% } else { %>
+                                <% for(let oneMeal of meals){%>
+                                    <div>
+                                        <img src="<%= oneMeal.image %>" width="150">
+                                        <a href="/meals/<%= oneMeal._id %>">
+                                            <%= oneMeal.name %>
+                                        </a>
+                                        <p>Price: <%= oneMeal.price %>BD</p>
+                                    </div>
+                                    <%}%>
+                                        <% } %>
 </body>
 </html>

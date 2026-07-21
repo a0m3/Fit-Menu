@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Restaurants</title>
 </head>
+
 <body>
     <%- include('../partials/navbar') %>
-    <h1>All Restaurants</h1>
-            <% if (user && user.role==='admin' ) { %>
+        <h1>All Restaurants</h1>
+        <% if (user && user.role==='admin' ) { %>
             <a href="/restaurants/new">
                 <button>Add new Restaurant</button>
             </a>
             <% } %>
-    <% for(let oneRestaurant of restaurants){%>
-<div>
+                <form action="/restaurants/search" method="GET">
+                    <input type="text" name="search" placeholder="Search restaurants...">
+                    <button>
+                        Search
+                    </button>
+                </form>
+                <% for(let oneRestaurant of restaurants){%>
+                    <div>
 
-    <a href="/restaurants/<%= oneRestaurant._id %>">
-    <%= oneRestaurant.name %>
-</a>
-</div>
-    <%}%>
+                        <a href="/restaurants/<%= oneRestaurant._id %>">
+                            <%= oneRestaurant.name %>
+                        </a>
+                    </div>
+                    <%}%>
 </body>
+
 </html>

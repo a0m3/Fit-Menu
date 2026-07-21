@@ -3,16 +3,20 @@ const isAdmin = require("../middleware/is-admin")
 const isSignedIn = require("../middleware/is-signed-in")
 const Meal = require('../models/Meal')
 const Restaurant = require('../models/Restaurant')
-
+const User = require('../models/User')
 
 
 // Show meal details
 router.get('/meals/:mealId/', async (req, res) => {
     try {
-            const foundMeal = await Meal.findById(req.params.mealId)
-
-            res.render('meals/meal-details.ejs', {meal: foundMeal})
+        const foundMeal = await Meal.findById(req.params.mealId)
+        let isFavorited = false
+        if (req.session.user) {
+            const foundUser = await User.findById(req.session.user._id)
+            isFavorited = foundUser.favoriteMeals.includes(req.params.mealId)
         }
+        res.render('meals/meal-details.ejs', { meal: foundMeal, isFavorited: isFavorited })
+    }
     catch (err) {
         console.log(err)
     }

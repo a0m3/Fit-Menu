@@ -9,7 +9,7 @@
     </title>
 
     <style>
-        .meal-div{
+        .meal-div {
             cursor: pointer;
         }
     </style>
@@ -23,46 +23,50 @@
             <%= restaurant.name %>
         </h1>
 
-
-
-        <h2>Meals</h2>
-
-        <% if (user && user.role==='admin' ) { %>
-            <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
-            <button>Add Meal</button>
-        </form>
-            <a href="/restaurants/<%= restaurant._id %>/edit">
-                <button>Edit Restaurant</button>
-            </a>
-            <% } %>
-                <% if (meals.length===0) { %>
-
-                    <p>No meals have been added yet.</p>
-
+        <% if (user) { %>
+            <form action="/restaurants/<%= restaurant._id %>/favorite?_method=POST" method="POST">
+                <% if (isFavorited) { %>
+                    <button>❤️</button>
                     <% } else { %>
+                        <button>🤍</button>
+                        <% } %>
+            </form>
+            <% } %>
 
-                        <% for (let oneMeal of meals) { %>
+                <h2>Meals</h2>
 
-                            <div class="meal-div" id="<%= oneMeal._id %>">
-                                <img src="<%= oneMeal.image %>" width="150">                                
-                                <h3>
-                                    <%= oneMeal.name %>
-                                </h3>
-                                <p>Price: <%= oneMeal.price %>BD</p>
-                            </div>
+                <% if (user && user.role==='admin' ) { %>
+                    <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
+                        <button>Add Meal</button>
+                    </form>
+                    <a href="/restaurants/<%= restaurant._id %>/edit">
+                        <button>Edit Restaurant</button>
+                    </a>
+                    <% } %>
 
-                            <% } %>
-                                <% } %>
+                        <% if (meals.length===0) { %>
+                            <p>No meals have been added yet.</p>
+                            <% } else { %>
+                                <% for (let oneMeal of meals) { %>
+                                    <div class="meal-div" id="<%= oneMeal._id %>">
+                                        <img src="<%= oneMeal.image %>" width="150">
+                                        <h3>
+                                            <%= oneMeal.name %>
+                                        </h3>
+                                        <p>Price: <%= oneMeal.price %>BD</p>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
 
-    <script>
-       const allMealDivEls = document.querySelectorAll('.meal-div')
-        console.log(allMealDivEls)
-        allMealDivEls.forEach((oneDiv)=>{
-        oneDiv.addEventListener('click',()=>{
-         window.location.replace(`/meals/${oneDiv.id}`)
-         })
-        })
-        </script>
+                                            <script>
+                                                const allMealDivEls = document.querySelectorAll('.meal-div')
+                                                console.log(allMealDivEls)
+                                                allMealDivEls.forEach((oneDiv) => {
+                                                    oneDiv.addEventListener('click', () => {
+                                                        window.location.replace(`/meals/${oneDiv.id}`)
+                                                    })
+                                                })
+                                            </script>
 </body>
 
 </html>

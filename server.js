@@ -17,6 +17,7 @@ const authController = require("./controllers/auth.controllers.js");
 const indexController = require("./controllers/index.controllers.js");
 const restaurantController = require("./controllers/restaurant.controllers.js")
 const mealController = require("./controllers/meal.controllers.js")
+const favoritesController = require("./controllers/favorites.controllers.js")
 
 const dns = require("dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
@@ -61,6 +62,7 @@ app.use('/auth',authController)
 app.use('/',indexController)
 app.use('/restaurants', restaurantController)
 app.use(mealController)
+app.use(favoritesController)
 
 
 

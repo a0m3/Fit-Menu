@@ -21,14 +21,14 @@ const userSchema = new mongoose.Schema({
     default: 'user',
     required: true
   },
-  favoriteRestaurants:{
+  favoriteRestaurants:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Restaurant'
-  },
-  favoriteMeals:{
+  }],
+  favoriteMeals:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Meal'
-  }
+  }]
 }, {timestamps: true});
 
 const User = mongoose.model("User", userSchema);

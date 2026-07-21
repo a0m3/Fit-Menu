@@ -3,8 +3,8 @@ const isAdmin = require('../middleware/is-admin')
 const Restaurant = require('../models/Restaurant')
 const Meal = require('../models/Meal')
 const isSignedIn = require("../middleware/is-signed-in")
+const User = require('../models/User')
 
-// Show all restaurants
 router.get('/', async (req, res) => {
     try {
         const allRestaurants = await Restaurant.find()
@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Add new restaurant form
 router.get('/new', isSignedIn, isAdmin, (req, res) => {
     try {
         res.render('restaurants/new-restaurant.ejs')
@@ -42,10 +41,16 @@ router.get('/:restaurantId', async (req, res) => {
         const restaurantMeals = await Meal.find({
             restaurant: req.params.restaurantId
         })
+        let isFavorited = false
+        if (req.session.user) {
+            const foundUser = await User.findById(req.session.user._id)
+            isFavorited = foundUser.favoriteRestaurants.includes(req.params.restaurantId)
+        }
 
         res.render('restaurants/restaurant-details.ejs', {
             restaurant: foundRestaurant,
-            meals: restaurantMeals
+            meals: restaurantMeals,
+            isFavorited: isFavorited
         })
     }
     catch (err) {
@@ -53,7 +58,7 @@ router.get('/:restaurantId', async (req, res) => {
     }
 })
 
-//edit restaurant (GET)
+
 router.get('/:restaurantId/edit', isSignedIn, isAdmin, async (req, res) => {
     try {
         const foundRestaurant = await Restaurant.findById(req.params.restaurantId)
@@ -74,7 +79,7 @@ router.put('/:restaurantId', isSignedIn, isAdmin, async (req, res) => {
     }
 })
 
-//Delete restaurant
+
 router.delete('/:restaurantId', async (req, res) => {
     try {
         await Restaurant.findByIdAndDelete(req.params.restaurantId)
