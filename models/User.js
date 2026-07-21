@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
     default: 'user',
     required: true
   },
-  favorites:{
+  favoriteRestaurants:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant'
+  },
+  favoriteMeals:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Meal'
   }

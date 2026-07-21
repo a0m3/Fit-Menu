@@ -4,11 +4,7 @@ const isSignedIn = require("../middleware/is-signed-in")
 const Meal = require('../models/Meal')
 const Restaurant = require('../models/Restaurant')
 
-// Show all meals of specific restaurant
-router.get('/', async (req, res) => {
-    const allMeals = await Meal.find()
-    res.render('meals/all-meals.ejs', { meals: allMeals })
-})
+
 
 // Show meal details
 router.get('/meals/:mealId/', async (req, res) => {
@@ -58,6 +54,23 @@ router.put('/meals/:mealId/edit', isSignedIn, isAdmin, async (req, res) => {
     }
 })
 
+router.delete('/meals/:mealId', isSignedIn, isAdmin, async (req, res) => {
+    try {
+        const foundMeal = await Meal.findById(req.params.mealId);
+
+        if (!foundMeal) {
+            return res.redirect('/restaurants');
+        }
+
+        const restaurantId = foundMeal.restaurant;
+
+        await Meal.findByIdAndDelete(req.params.mealId);
+
+        res.redirect(`/restaurants/${restaurantId}`);
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 
 module.exports = router;
