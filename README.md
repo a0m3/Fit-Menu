@@ -8,12 +8,15 @@
 
 ## Screenshots
 
-- Home Page
-- Restaurants Page
+- Home Page (Best Offers For Today)
+- All Restaurants
 - Restaurant Details
 - Meal Details
 - Add Meal
-- User Dashboard
+- Sign Up / Sign In
+- My Favorites
+- Admin Dashboard
+- 404 Page
 
 ---
 
@@ -47,10 +50,10 @@ FitMenu allows users to:
 - Create an account
 - Log in securely
 - Browse restaurants
-- View meal nutritional information
-- Add new meals
-- Edit and delete meals they created
-- Save favorite meals (optional)
+- View meal nutritional information (calories, protein, carbs, fat)
+- Add, edit, and delete restaurants and meals (admin only)
+- Save favorite restaurants and favorite meals
+- Toggle between dark mode and light mode
 
 ---
 
@@ -60,28 +63,32 @@ FitMenu allows users to:
 
 ---
 
+
 ## User Stories
 
 ### Visitor
 - As a visitor, I want to browse restaurants.
 - As a visitor, I want to view restaurant details.
-- As a visitor, I want to browse meals.
-- As a visitor, I want to see calories and macronutrients.
-- As a visitor, I want to search for meals or restaurants.
+- As a visitor, I want to browse the meals offered by a restaurant.
+- As a visitor, I want to see calories and macronutrients for each meal.
+- As a visitor, I want to see today's cheapest meals on the homepage.
 
 ### Registered User
 - As a user, I want to create an account.
 - As a user, I want to log in.
-- As a user, I want to log out
+- As a user, I want to log out.
+- As a user, I want to save my favorite restaurants.
 - As a user, I want to save my favorite meals.
+- As a user, I want to view my favorite restaurants and meals separately.
 
 ### Admin
 - As an admin, I want to add restaurants.
 - As an admin, I want to update restaurant information.
 - As an admin, I want to remove restaurants.
-- As an admin, I want to add meals.
+- As an admin, I want to add meals to a restaurant.
 - As an admin, I want to edit meal information.
 - As an admin, I want to delete meals.
+- As an admin, I want to view a dashboard with restaurant and meal counts.
 
 ---
 
@@ -91,14 +98,16 @@ FitMenu allows users to:
 
 - username
 - email
-- password (hashed)
-- role
-- favorites
+- password (hashed, minimum 6 characters)
+- role (`user` or `admin`)
+- favoriteRestaurants (array of Restaurant references)
+- favoriteMeals (array of Meal references)
 
 ### Restaurant
 
 - name
 - logo
+- description
 
 ### Meal
 
@@ -109,7 +118,7 @@ FitMenu allows users to:
 - carbs
 - fat
 - price
-- restaurant
+- restaurant (reference to Restaurant)
 
 ---
 
@@ -119,65 +128,84 @@ FitMenu allows users to:
 
 | Method | Route | Description |
 |---------|-------|-------------|
-| GET | /signup | Display signup form |
-| POST | /signup | Create a new user |
-| GET | /login | Display login form |
-| POST | /login | Authenticate user |
-| GET | /logout | Log out user |
+| GET | /auth/sign-up | Display sign up form |
+| POST | /auth/sign-up | Create a new user |
+| GET | /auth/sign-in | Display sign in form |
+| POST | /auth/sign-in | Authenticate user |
+| GET | /auth/sign-out | Log out user |
 
 ### Restaurants
 
 | Method | Route | Description |
 |---------|-------|-------------|
 | GET | /restaurants | Display all restaurants |
-| GET | /restaurants/new | Display new restaurant form |
-| POST | /restaurants | Create a restaurant |
-| GET | /restaurants/:id | Display restaurant details |
-| GET | /restaurants/:id/edit | Display edit form |
-| PUT | /restaurants/:id | Update restaurant |
-| DELETE | /restaurants/:id | Delete restaurant |
+| GET | /restaurants/new | Display new restaurant form (admin) |
+| POST | /restaurants | Create a restaurant (admin) |
+| GET | /restaurants/:restaurantId | Display restaurant details and its meals |
+| GET | /restaurants/:restaurantId/edit | Display edit form (admin) |
+| PUT | /restaurants/:restaurantId | Update restaurant (admin) |
+| DELETE | /restaurants/:restaurantId | Delete restaurant and its meals (admin) |
 
 ### Meals
 
 | Method | Route | Description |
 |---------|-------|-------------|
-| GET | /meals | Display all meals |
-| GET | /meals/new | Display new meal form |
-| POST | /meals | Create a meal |
-| GET | /meals/:id | Display meal details |
-| GET | /meals/:id/edit | Display edit form |
-| PUT | /meals/:id | Update meal |
-| DELETE | /meals/:id | Delete meal |
+| GET | / | Homepage with today's cheapest meal offers |
+| GET | /restaurants/:restaurantId/meals/new | Display new meal form (admin) |
+| POST | /restaurants/:restaurantId/meals | Create a meal for a restaurant (admin) |
+| GET | /meals/:mealId | Display meal details |
+| GET | /meals/:mealId/edit | Display edit form (admin) |
+| PUT | /meals/:mealId/edit | Update meal (admin) |
+| DELETE | /meals/:mealId | Delete meal (admin) |
+
+### Favorites
+
+| Method | Route | Description |
+|---------|-------|-------------|
+| GET | /favorites | Display favorite restaurants and favorite meals |
+| POST | /restaurants/:restaurantId/favorite | Add/remove a restaurant from favorites |
+| POST | /meals/:mealId/favorite | Add/remove a meal from favorites |
+
+### Admin
+
+| Method | Route | Description |
+|---------|-------|-------------|
+| GET | /admin | Admin dashboard (restaurant and meal counts) |
+| GET | /admin/restaurants | Admin view of all restaurants |
 
 ---
 
 ## Features
 
-- User authentication
-- Full CRUD functionality for meals
-- Full CRUD functionality for restaurants
-- Nutrition information (Calories, Protein, Carbs, Fat)
-- Responsive design
-- Meal search
-- Restaurant pages
-- Image support
+- User authentication (sign up, sign in, sign out)
+- Role-based access control (user vs. admin)
+- Full CRUD functionality for restaurants (admin)
+- Full CRUD functionality for meals (admin)
+- Nutrition information (calories, protein, carbs, fat)
+- Favorite restaurants and favorite meals, viewable as separate tabs
+- Homepage "Best Offers For Today" — random low-cost meals pulled from different restaurants
+- Admin dashboard with restaurant/meal counts
+- Dark mode / light mode toggle
+- Confirmation popup before deleting a meal or restaurant
+- Custom 404 page
+- Responsive card-based layout for restaurants and meals
 
 ---
 
 ## Future Enhancements
 
+- Meal and restaurant search
 - AI food recognition from images
 - Barcode scanner
 - Daily calorie tracker
 - Personalized calorie calculator
-- Meal recommendations based on goals
+- Meal recommendations based on fitness goals
 - Restaurant ratings and reviews
 - Nutrition charts
-- Admin dashboard
 - Mobile application
 
 ---
 
 ## Credits
 
-- Nutrition information collected from restaurant websites and publicly available nutritional data.
+- Restaurant names are based on real establishments in Bahrain; nutritional values are estimated for demonstration purposes and are not sourced from official restaurant data.

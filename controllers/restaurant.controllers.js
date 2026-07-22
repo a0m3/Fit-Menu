@@ -59,6 +59,7 @@ router.get('/:restaurantId', async (req, res) => {
 })
 
 
+
 router.get('/:restaurantId/edit', isSignedIn, isAdmin, async (req, res) => {
     try {
         const foundRestaurant = await Restaurant.findById(req.params.restaurantId)
@@ -80,14 +81,16 @@ router.put('/:restaurantId', isSignedIn, isAdmin, async (req, res) => {
 })
 
 
-router.delete('/:restaurantId', async (req, res) => {
+router.delete("/:restaurantId", isSignedIn, isAdmin, async (req, res) => {
     try {
+        await Meal.deleteMany({
+            restaurant: req.params.restaurantId
+        })
         await Restaurant.findByIdAndDelete(req.params.restaurantId)
-        res.redirect('/restaurants')
-    }
-    catch (err) {
+        res.redirect("/restaurants")
+    } catch (err) {
         console.log(err)
     }
-})
+});
 
 module.exports = router;

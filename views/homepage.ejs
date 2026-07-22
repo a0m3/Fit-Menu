@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/meal.css">
+    <link rel="icon" type="images/png" href="/images/logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+    </style>
 </head>
+
 <body>
     <%- include('./partials/navbar') %>
 
-    <h1>Welcome to my Website</h1>
+        <h1>Eat Smarter With FitMenu So You Live Healthier</h1>
+        <h2>Best Offers For Today</h2>
+        <div class="offer-grid">
+            <% for(let oneMeal of offers){ %>
+                <div class="offer-card">
+                    <img src="<%= oneMeal.image %>">
+                    <h2>
+                        <%= oneMeal.restaurant.name %>
+                    </h2>
+                    <h3>
+                        <%= oneMeal.name %>
+                    </h3>
+                    <p>
+                        <%= oneMeal.price %>BD
+                    </p>
+                    <a href="/meals/<%= oneMeal._id %>">View Meal</a>
+                </div>
+                <% } %>
+        </div>
+
+        <div class="view-more">
+            <a href="/restaurants" class="btn">Show More</a>
+        </div>
+
+        <%- include('./partials/footer') %>
 </body>
+
 </html>

@@ -1,0 +1,112 @@
+.dashboard{
+width:100%;
+margin:auto;
+}
+.cards{
+display:flex;
+gap:20px;
+margin:40px 0;
+}
+.card{
+flex:1;
+background: var(--bg-alt);
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,.3);
+transition:.3s;
+}
+.card:hover{
+transform:translateY(-6px);
+}
+.card h2{
+font-size:3rem;
+color:var(--text);
+}
+.actions{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+.actions a{
+text-decoration:none;
+}
+.actions button{
+width:100%;
+padding:18px;
+font-size:18px;
+border:none;
+background:#78e45a;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+
+.restaurant-container{
+    width:90%;
+    margin:40px auto;
+}
+
+.restaurant-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:var(--bg-alt);
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+}
+
+.restaurant-logo{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.restaurant-info{
+    flex:1;
+    margin-left:30px;
+}
+
+.restaurant-info h2{
+    margin-bottom:20px;
+}
+
+.actions-restaurant{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.actions form{
+    margin:0;
+}
+
+.actions button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background: var(--accent);
+}
+
+.delete-btn{
+    background:#d9534f;
+    color:white;
+}
+
+#form-delete{
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    width: fit-content;
+    margin: 0;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+}

@@ -4,38 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title><%= meal.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/meal.css">
 </head>
 
 <body>
     <%- include('../partials/navbar') %>
 
+        <div class="meal-detail-card">
+            <img src="<%= meal.image %>" alt="<%= meal.name %>">
 
-        <div>
-            <img src="<%= meal.image %>" width="150">
-            <h3>
-                <%= meal.name%>
-            </h3>
-            <p>Calories: <%= meal.calories %>
-            </p>
-            <p>Protein: <%= meal.protein %>g</p>
-            <p>Carbs: <%= meal.carbs %>g</p>
-            <p>Fat: <%= meal.fat %>g</p>
-            <p>Price: <%= meal.price %>BD</p>
-            <% if (user && user.role==='admin' ) { %>
-                <a href="/meals/<%= meal._id %>/edit">
-                    <button>Edit</button>
-                </a>
-                <%}%>
-        <% if (user) { %>
-            <form action="/meals/<%= meal._id %>/favorite?_method=POST" method="POST">
-                <% if (isFavorited) { %>
-                    <button>❤️</button>
-                    <% } else { %>
-                        <button>🤍</button>
-                        <% } %>
-            </form>
-            <% } %>
+            <div class="meal-detail-info">
+                <h2>
+                    <%= meal.restaurant.name%> Restaurant
+                </h2>
+                <h3>
+                    <%= meal.name%>
+                </h3>
+                <p>Calories: <%= meal.calories %>
+                </p>
+                <p>Protein: <%= meal.protein %>g</p>
+                <p>Carbs: <%= meal.carbs %>g</p>
+                <p>Fat: <%= meal.fat %>g</p>
+                <p>Price: <%= meal.price %>BD</p>
+                <% if (user && user.role==='admin' ) { %>
+                    <a href="/meals/<%= meal._id %>/edit">
+                        <button>Edit</button>
+                    </a>
+                    <%}%>
+                        <% if (user) { %>
+                            <form class="btn-form" action="/meals/<%= meal._id %>/favorite?_method=POST" method="POST">
+                                <% if (isFavorited) { %>
+                                    <button>🤍</button>
+                                    <% } else { %>
+                                        <button>❤️</button>
+                                        <% } %>
+                            </form>
+                            <% } %>
+            </div>
         </div>
 
 

@@ -4,37 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorites</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/favorite.css">
+    <link rel="stylesheet" href="/css/Restaurant.css">
+    <link rel="stylesheet" href="/css/meal.css">
 </head>
 <body>
     <%- include('../partials/navbar') %>
     <h1>My Favorites</h1>
 
-    <h2>My Favorite Restaurants</h2>
-    <% if (restaurants.length===0) { %>
-        <p>You haven't favorited any restaurants yet.</p>
-        <% } else { %>
-            <% for(let oneRestaurant of restaurants){%>
-                <div>
-                    <a href="/restaurants/<%= oneRestaurant._id %>">
-                        <%= oneRestaurant.name %>
-                    </a>
-                </div>
-                <%}%>
-                    <% } %>
+    <div class="favorites-tabs">
+        <button type="button" id="restaurantsTabBtn" class="tab-btn active">Favorite Restaurants</button>
+        <button type="button" id="mealsTabBtn" class="tab-btn">Favorite Meals</button>
+    </div>
 
-                        <h2>My Favorite Meals</h2>
-                        <% if (meals.length===0) { %>
-                            <p>You haven't favorited any meals yet.</p>
-                            <% } else { %>
-                                <% for(let oneMeal of meals){%>
-                                    <div>
-                                        <img src="<%= oneMeal.image %>" width="150">
-                                        <a href="/meals/<%= oneMeal._id %>">
-                                            <%= oneMeal.name %>
-                                        </a>
-                                        <p>Price: <%= oneMeal.price %>BD</p>
-                                    </div>
-                                    <%}%>
-                                        <% } %>
+    <div id="restaurantsSection" class="favorites-section active">
+        <% if (restaurants.length===0) { %>
+            <p>You haven't favorited any restaurants yet.</p>
+            <% } else { %>
+                <div class="restaurant-grid">
+                    <% for(let oneRestaurant of restaurants){%>
+                        <div class="restaurant-card">
+                            <img src="<%= oneRestaurant.logo %>">
+                            <h3><%= oneRestaurant.name %></h3>
+                            <a href="/restaurants/<%= oneRestaurant._id %>">View Restaurant</a>
+                        </div>
+                        <%}%>
+                </div>
+                <% } %>
+    </div>
+
+    <div id="mealsSection" class="favorites-section">
+        <% if (meals.length===0) { %>
+            <p>You haven't favorited any meals yet.</p>
+            <% } else { %>
+                <div class="meal-grid">
+                    <% for(let oneMeal of meals){%>
+                        <div class="meal-card">
+                            <img src="<%= oneMeal.image %>">
+                            <h3><%= oneMeal.name %></h3>
+                            <p>Price: <%= oneMeal.price %>BD</p>
+                            <a href="/meals/<%= oneMeal._id %>">View Meal</a>
+                        </div>
+                        <%}%>
+                </div>
+                <% } %>
+    </div>
+
+    <script>
+        const restaurantsTabBtn = document.getElementById('restaurantsTabBtn')
+        const mealsTabBtn = document.getElementById('mealsTabBtn')
+        const restaurantsSection = document.getElementById('restaurantsSection')
+        const mealsSection = document.getElementById('mealsSection')
+
+        restaurantsTabBtn.addEventListener('click', () => {
+            restaurantsTabBtn.classList.add('active')
+            mealsTabBtn.classList.remove('active')
+            restaurantsSection.classList.add('active')
+            mealsSection.classList.remove('active')
+        })
+
+        mealsTabBtn.addEventListener('click', () => {
+            mealsTabBtn.classList.add('active')
+            restaurantsTabBtn.classList.remove('active')
+            mealsSection.classList.add('active')
+            restaurantsSection.classList.remove('active')
+        })
+    </script>
 </body>
 </html>

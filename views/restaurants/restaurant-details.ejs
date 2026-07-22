@@ -7,6 +7,9 @@
     <title>
         <%= restaurant.name %>
     </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/restaurant.css">
+    <link rel="stylesheet" href="/css/meal.css">
 
     <style>
         .meal-div {
@@ -16,57 +19,63 @@
 </head>
 
 <body>
-    <%- include('../partials/navbar') %>
 
-        <img src="<%= restaurant.logo %>" alt="<%= restaurant.name %>">
-        <h1>
-            <%= restaurant.name %>
-        </h1>
+    <body>
+        <%- include('../partials/navbar') %>
 
-        <% if (user) { %>
-            <form action="/restaurants/<%= restaurant._id %>/favorite?_method=POST" method="POST">
-                <% if (isFavorited) { %>
-                    <button>❤️</button>
-                    <% } else { %>
-                        <button>🤍</button>
+            <div class="restaurant-header">
+                <img src="<%= restaurant.logo %>" alt="<%= restaurant.name %>">
+                <p>
+                    <%= restaurant.description %>
+                </p>
+                <h1 id="restaurant-fav">
+                    <%= restaurant.name %>
+                        <% if (user) { %>
+                            <form class="btn-form" action="/restaurants/<%= restaurant._id %>/favorite?_method=POST"
+                                method="POST">
+                                <% if (isFavorited) { %>
+                                    <button>🤍</button>
+                                    <% } else { %>
+                                        <button>❤️</button>
+                                        <% } %>
+                            </form>
+                            <% } %>
+                </h1>
+            </div>
+            <div class="restaurant-meals-line">
+                <h2>Meals
+                    <% if (user && user.role==='admin' ) { %>
+                        <form class="btn-form" action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
+                            <button>Add Meal</button>
+                        </form>
                         <% } %>
-            </form>
-            <% } %>
-
-                <h2>Meals</h2>
-
-                <% if (user && user.role==='admin' ) { %>
-                    <form action="/restaurants/<%= restaurant._id %>/meals/new" method="GET">
-                        <button>Add Meal</button>
-                    </form>
-                    <a href="/restaurants/<%= restaurant._id %>/edit">
-                        <button>Edit Restaurant</button>
-                    </a>
+                </h2>
+            </div>
+            <% if (meals.length===0) { %>
+                <p>No meals have been added yet.</p>
+                <% } else { %>
+                    <div class="meal-grid">
+                        <% for (let oneMeal of meals) { %>
+                            <div class="meal-div meal-card" id="<%= oneMeal._id %>">
+                                <img src="<%= oneMeal.image %>">
+                                <h3>
+                                    <%= oneMeal.name %>
+                                </h3>
+                                <p>Price: <%= oneMeal.price %>BD</p>
+                            </div>
+                            <% } %>
+                    </div>
                     <% } %>
 
-                        <% if (meals.length===0) { %>
-                            <p>No meals have been added yet.</p>
-                            <% } else { %>
-                                <% for (let oneMeal of meals) { %>
-                                    <div class="meal-div" id="<%= oneMeal._id %>">
-                                        <img src="<%= oneMeal.image %>" width="150">
-                                        <h3>
-                                            <%= oneMeal.name %>
-                                        </h3>
-                                        <p>Price: <%= oneMeal.price %>BD</p>
-                                    </div>
-                                    <% } %>
-                                        <% } %>
-
-                                            <script>
-                                                const allMealDivEls = document.querySelectorAll('.meal-div')
-                                                console.log(allMealDivEls)
-                                                allMealDivEls.forEach((oneDiv) => {
-                                                    oneDiv.addEventListener('click', () => {
-                                                        window.location.replace(`/meals/${oneDiv.id}`)
-                                                    })
-                                                })
-                                            </script>
+                        <script>
+                            const allMealDivEls = document.querySelectorAll('.meal-div')
+                            allMealDivEls.forEach((oneDiv) => {
+                                oneDiv.addEventListener('click', () => {
+                                    window.location.replace(`/meals/${oneDiv.id}`)
+                                })
+                            })
+                        </script>
+    </body>
 </body>
 
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Restaurants</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="restaurant-container">
+    <% restaurants.forEach((restaurant) => { %>
+        <div class="restaurant-card">
+            <img src="<%= restaurant.logo %>" class="restaurant-logo">
+            <div class="restaurant-info">
+                <h2><%= restaurant.name %></h2>
+                <div class="actions-restaurant">
+                    <a href="/restaurants/<%= restaurant._id %>/edit">
+                        <button>Edit</button>
+                    </a>
+                    <form id="form-delete" action="/restaurants/<%= restaurant._id %>?_method=DELETE" method="POST">
+                        <button class="delete-btn">Delete</button>
+                    </form>
+                    <a href="/restaurants/<%= restaurant._id %>">
+                        <button>Meals</button>
+                    </a>
+                    <a href="/restaurants/<%= restaurant._id %>/meals/new">
+                        <button>Add Meal</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+</body>
+
+</html>

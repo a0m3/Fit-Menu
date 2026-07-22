@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit <%= restaurant.name %> Details</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/restaurant.css">
 </head>
 
 <body>
@@ -16,11 +18,13 @@
                 <label for="name">Name:</label>
                 <input value="<%= restaurant.name %>" name="name" id="name" type="text">
 
-                <br><br>
 
-                <label for="image">Image</label>
-                <input type="text" name="image" value="<%= restaurant.logo %>">
-                <br><br>
+                <label for="description">Description:</label>
+                <input value="<%= restaurant.description %>" name="description" id="description" type="text">
+
+                <label for="logo">Restaurant Logo: </label>
+                <input value="<%=restaurant.logo%>" name="logo" id="logo" type="text">
+                <br>
                 <button type="submit">Update <%=restaurant.name%> Details</button>
 
             </form>

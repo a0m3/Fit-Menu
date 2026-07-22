@@ -5,30 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Restaurants</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/restaurant.css">
 </head>
 
 <body>
     <%- include('../partials/navbar') %>
         <h1>All Restaurants</h1>
-        <% if (user && user.role==='admin' ) { %>
-            <a href="/restaurants/new">
-                <button>Add new Restaurant</button>
-            </a>
-            <% } %>
-                <form action="/restaurants/search" method="GET">
-                    <input type="text" name="search" placeholder="Search restaurants...">
-                    <button>
-                        Search
-                    </button>
-                </form>
-                <% for(let oneRestaurant of restaurants){%>
-                    <div>
 
-                        <a href="/restaurants/<%= oneRestaurant._id %>">
-                            <%= oneRestaurant.name %>
-                        </a>
-                    </div>
-                    <%}%>
+        <div class="restaurant-grid">
+            <% for(let oneRestaurant of restaurants){%>
+                <div class="restaurant-card">
+                    <img src="<%= oneRestaurant.logo %>">
+                    <h3>
+                        <%= oneRestaurant.name %>
+                    </h3>
+                    <a href="/restaurants/<%= oneRestaurant._id %>">View Restaurant</a>
+                </div>
+                <%}%>
+        </div>
 </body>
 
 </html>

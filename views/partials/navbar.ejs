@@ -1,15 +1,42 @@
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" type="images/png" href="/images/logo.png">
+
+<script>
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light')
+    }
+</script>
+
 <nav>
-    
+     <img id="fit-menu-logo" src="/images/logo.png" alt="FitMenu Logo">
     <a href="/">Homepage</a>
     <a href="/restaurants">All Restaurants</a>
-    <% if (user){ %>
-    <a href="/auth/sign-out">Logout</a>
-    <a href="/favorites">My Favorate Meals</a>
 
-    <% } else{ %>
-    <a href="/auth/sign-up">Sign up</a>
-    <a href="/auth/sign-in">Login</a>
+    <% if (user) { %>
+
+        <a href="/favorites">My Favorites</a>
+
+        <% if (user.role === "admin") { %>
+            <a href="/admin">Admin Panel</a>
+        <% } %>
+
+        <a href="/auth/sign-out">Logout</a>
+
+    <% } else { %>
+
+        <a href="/auth/sign-up">Sign Up</a>
+        <a href="/auth/sign-in">Login</a>
 
     <% } %>
-    
+
+    <button type="button" id="themeToggle" class="theme-toggle">
+        🌙 / ☀️
+    </button>
 </nav>
+
+<script>
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        document.body.classList.toggle('light')
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark')
+    })
+</script>

@@ -1,0 +1,294 @@
+:root {
+    --bg: #282727;
+    --bg-alt: #3c7344;
+    --text: #ffffff;
+    --text-muted: #d2d2d2;
+    --border: #333;
+    --accent: #60b48e;
+    --accent-hover: #6fcf9d;
+    --accent-text: #0d0d0d;
+    --danger: #e05555;
+    --danger-hover: #f07373;
+}
+
+body.light {
+    --bg: #d1e7d1;
+    --bg-alt: #95d49e;
+    --text: #121212;
+    --text-muted: #5a5a5a;
+    --border: #d8e2da;
+    --accent: #2e9e63;
+    --accent-hover: #279256;
+    --accent-text: #ffffff;
+    --danger: #d64545;
+    --danger-hover: #c23a3a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.comic-neue-light {
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.comic-neue-regular {
+  font-family: "Comic Neue", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-neue-bold {
+  font-family: "Comic Neue", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.comic-neue-light-italic {
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.comic-neue-regular-italic {
+  font-family: "Comic Neue", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.comic-neue-bold-italic {
+  font-family: "Comic Neue", cursive;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+body {
+    margin: 0;
+    padding: 0 24px 48px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    transition: background-color 0.15s, color 0.15s;
+    font-family: "Comic Neue", cursive;
+}
+
+#fit-menu-logo{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+
+h1 {
+    margin-top: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+p {
+    color: var(--text);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-alt);
+    padding: 16px 24px;
+    margin: 0 -24px;
+    border-bottom: 1px solid var(--border);
+}
+
+nav a {
+    color: var(--text);
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.theme-toggle {
+    margin-left: auto;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: bold;
+}
+
+.theme-toggle:hover {
+    background: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: fit-content;
+    margin: 16px auto 0;
+    padding: 24px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.btn-form {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    display: inline-flex;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 4px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 280px;
+    padding: 8px 12px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--accent);
+    margin-right: 6px;
+}
+
+button {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+button:hover {
+    background: var(--accent-hover);
+}
+
+form[action*="_method=DELETE"] button {
+    background: var(--danger);
+    color: white;
+}
+
+form[action*="_method=DELETE"] button:hover {
+    background: var(--danger-hover);
+}
+
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+
+.view-more {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    text-decoration: none;
+    color: var(--accent-text);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-box {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 320px;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.btn-cancel {
+    background: var(--border);
+    color: var(--text);
+}
+
+.btn-cancel:hover {
+    background: var(--text-muted);
+}

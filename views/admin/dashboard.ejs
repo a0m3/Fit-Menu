@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <div class="dashboard">
+            <h1>Admin Dashboard</h1>
+            <div class="cards">
+                <div class="card">
+                    <h2>
+                        <%= restaurantCount %>
+                    </h2>
+                    <p>Restaurants</p>
+                </div>
+                <div class="card">
+                    <h2>
+                        <%= mealCount %>
+                    </h2>
+                    <p>Meals</p>
+                </div>
+            </div>
+            <% if (user && user.role==='admin' ) { %>
+                <div class="actions">
+                    <a href="/admin/restaurants">
+                        <button>Manage Restaurants</button>
+                    </a>
+                    <a href="/restaurants/new">
+                        <button>Add new Restaurant</button>
+                    </a>
+                    <% } %>
+                </div>
+        </div>
+</body>
+
+</html>

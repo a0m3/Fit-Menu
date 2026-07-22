@@ -18,6 +18,7 @@ const indexController = require("./controllers/index.controllers.js");
 const restaurantController = require("./controllers/restaurant.controllers.js")
 const mealController = require("./controllers/meal.controllers.js")
 const favoritesController = require("./controllers/favorites.controllers.js")
+const adminController = require("./controllers/admin.controllers.js");
 
 const dns = require("dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
@@ -63,8 +64,11 @@ app.use('/',indexController)
 app.use('/restaurants', restaurantController)
 app.use(mealController)
 app.use(favoritesController)
+app.use("/admin", adminController);
 
-
+app.use((req, res) => {
+    res.status(404).render('404.ejs')
+})
 
 
 

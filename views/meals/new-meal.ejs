@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Meal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/meal.css">
 </head>
 
 <body>
@@ -12,25 +14,25 @@
         <form action="/restaurants/<%= restaurant._id %>/meals" method="POST">
             <label for="name">Meal Name: </label>
             <input name="name" id="name" type="text">
-            <br><br>
+
             <label for="image">Meal Image: </label>
             <input name="image" id="image" type="text">
-            <br><br>
+
             <label for="calories">Calories: </label>
             <input name="calories" id="calories" type="text">
-            <br><br>
+
             <label for="protein">Protein: </label>
             <input name="protein" id="protein" type="text">
-            <br><br>
+
             <label for="carbs">Carbs: </label>
             <input name="carbs" id="carbs" type="text">
-            <br><br>
+
             <label for="fat">Fat: </label>
             <input name="fat" id="fat" type="text">
-            <br><br>
+
             <label for="price">Price: </label>
             <input name="price" id="price" type="text">
-            <br><br>
+            <br>
             <button type="submit" href="/restaurants/<%=restaurant._id%>/meals/new">Add new meal to <%= %>
                     Restaurant</button>
         </form>

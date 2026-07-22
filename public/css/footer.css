@@ -1,0 +1,22 @@
+.footer{
+    margin-top: 60px;
+    padding: 35px 10%;
+    text-align: center;
+    background: var(--bg-alt);
+    border-top: 1px solid #2e2e2e;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+}
+
+.footer h3{
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.footer p{
+    color: var(--text);
+    max-width: 700px;
+    margin: 0 auto 15px;
+    line-height: 1.7;
+}
